@@ -1,47 +1,53 @@
-# Plantilla Backend TypeScript Express
+# Back Chat - Messaging System for Hackathon Global Stablecoin Hackathon Build On Minipay With Mento Local Stablecoins
 
-Esta plantilla es un punto de partida para proyectos backend usando TypeScript y Express. Está diseñada para ser clonada y utilizada rápidamente, permitiendo a los desarrolladores enfocarse en el desarrollo de funcionalidades específicas.
+Real-time messaging system with WebSockets, Express, TypeScript, and MongoDB.
 
-## Características
+## Main Features
 
--   Estructura de proyecto clara y modular.
--   Configuración de TypeScript para un desarrollo robusto.
--   Integración con Express para manejo de rutas y middleware.
+-   WebSockets for instant communication
+-   MongoDB storage
+-   RESTful API
+-   Basic authentication
 
-## Licencias
+## Quick Setup
 
-Este proyecto es de código abierto y puede ser utilizado por cualquier persona o empresa. Siéntete libre de adaptarlo a tus necesidades.
-
-## Comenzando
-
-### Prerrequisitos
-
-Antes de iniciar, asegúrate de tener instalado Node.js en tu sistema. Luego, sigue los siguientes pasos para configurar el proyecto en tu máquina local.
-
-### Configuración Inicial
-
-1.  **Clona el repositorio:**
+1. **Clone and configure:**
 
     ```bash
-    git clone https://github.com/LeoRami99/Plantilla-Backend-Typescript.git
-    cd Plantilla-Backend-Typescript
+    git clone https://github.com/LeoRami99/socket-chat back-chat-hack
+    cd back-chat-hack
+    npm install
     ```
 
-2.  **Creación de variables de entorno**
-    Crear un archivo `.env` en la raiz del proyecto con las siguientes variables:
+2. **Environment variables:**
+   Create `.env` in the root:
 
-        ```
-        STATIC_FILES_PATH=src/public
-        # Añade aquí otras variables de entorno necesarias.
-        ```
+    ```
+    PORT=3000
+    MONGODB_URI=mongodb://localhost:27017/chat_app
+    ```
 
-3.  **Ejecutar el proyecto**
-
+3. **Execution:**
     ```bash
     npm run dev
     ```
 
-4.  **Construcción para producción**
-    `npm run build &&
-npm run start
-   `
+## Structure
+
+```
+src/
+├── models/        # MongoDB Models
+├── controllers/   # API Endpoints
+├── services/      # Business Logic
+├── sockets/       # WebSocket Management
+└── config/        # Configurations
+```
+
+## Basic Usage
+
+```javascript
+// Client
+const socket = io("http://localhost:3000");
+socket.emit("sendMessage", { to: "user123", content: "Hello!" });
+socket.on("newMessage", (msg) => console.log(msg));
+```
